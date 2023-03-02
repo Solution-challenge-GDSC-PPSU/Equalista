@@ -1,6 +1,8 @@
 import 'package:equalista/Constants/Stringconstant.dart';
 import 'package:flutter/material.dart';
 
+import '../OrganizationCreater/verifyOrganization.dart';
+
 class Role_Selectpage extends StatefulWidget {
   const Role_Selectpage({super.key});
 
@@ -92,16 +94,21 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      Container(
-                        height: height * 0.06,
-                        width: width * 0.6,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(10),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyOrganization()));
+                        },
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.6,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child:
+                          const Center(child: Text("Create an Organization")),
                         ),
-                        child:
-                            const Center(child: Text("Create an Organization")),
-                      ),
+                      )
                     ],
                   ),
                 ),

@@ -22,7 +22,7 @@ class _LoginpageState extends State<Loginpage> {
           children: [
             CircleAvatar(
               maxRadius: 170,
-              backgroundImage: AssetImage("images/logo.png"),
+              backgroundImage: AssetImage("assets/logo.png"),
             ),
             SizedBox(
               height: 20,
@@ -33,11 +33,12 @@ class _LoginpageState extends State<Loginpage> {
                   // backgroundColor: Colors.lightBlue.shade100,
                 ),
                 onPressed: () {
-                     DialogBuilder(context).showLoadingIndicator();
-                  FirebaseHelper.signInWithGoogle().then((value) {
-                     DialogBuilder(context).hideOpenDialog();
-                    Get.to(() => Role_Selectpage());
-                  });
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
+                     // DialogBuilder(context).showLoadingIndicator();
+                  // FirebaseHelper.signInWithGoogle().then((value) {
+                  //    DialogBuilder(context).hideOpenDialog();
+                  //   Get.to(() => Role_Selectpage());
+                  // });
                 },
                 child: Container(
                   width: width * 0.70,
