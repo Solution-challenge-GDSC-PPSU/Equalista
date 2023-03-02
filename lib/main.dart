@@ -1,6 +1,4 @@
 import 'package:equalista/OnboardFiles/onboard._page.dart';
-import 'package:equalista/SignupFiles/role_selectpage.dart';
-import 'package:equalista/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -16,9 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Onboardpage(),
+      
     );
   }
 }

@@ -1,4 +1,7 @@
+import 'package:equalista/SignupFiles/loginpage.dart';
+import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Onboardpage extends StatefulWidget {
   const Onboardpage({super.key});
@@ -67,6 +70,9 @@ class _OnboardpageState extends State<Onboardpage> {
                   width: 60,
                   child: FloatingActionButton(
                     onPressed: () {
+                      if (_pageController.page == 2) {
+                        Get.to(() => const Loginpage());
+                      }
                       _pageController.nextPage(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.ease);
