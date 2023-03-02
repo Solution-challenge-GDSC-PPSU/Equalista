@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "542268467087",
+    "project_id": "equalista-8ca55",
+    "storage_bucket": "equalista-8ca55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542268467087:android:3570f1bb7bf687dfc1cdfa",
+        "android_client_info": {
+          "package_name": "com.example.equalista"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542268467087-po8tsi87juchdt390l4dkoe6v219257h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.equalista",
+            "certificate_hash": "54304b9bee9f7e38dccfe8b76769596533a43059"
+          }
+        },
+        {
+          "client_id": "542268467087-49k1c6589v7m6gore3eu9j2hp83cnchp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwl6KyKjo3KxUWV1yDUYOxTlxnlrOuMRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542268467087-49k1c6589v7m6gore3eu9j2hp83cnchp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
