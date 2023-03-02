@@ -1,3 +1,4 @@
+import 'package:equalista/Constants/Stringconstant.dart';
 import 'package:flutter/material.dart';
 
 class Role_Selectpage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: height * 0.1),
-                child: const Text("Welcome to \nthe Equalista",
+                child: Text("Welcome to \nthe ${Stringconst.appname}",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

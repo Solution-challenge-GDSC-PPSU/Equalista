@@ -1,3 +1,4 @@
+import 'package:equalista/Constants/Stringconstant.dart';
 import 'package:equalista/SignupFiles/loginpage.dart';
 import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,7 @@ class Onboard {
 final List<Onboard> onboarddata = [
   Onboard(
     image: "assets/enq1.png",
-    title: "Welcome to \nthe Equalista",
+    title: "Welcome to \nthe ${Stringconst.appname}",
     description:
         "We are here to help you find the best \nproducts for your skin type",
   ),
