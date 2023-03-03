@@ -21,6 +21,8 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
   final TextEditingController _phonenumController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usersocialmediaController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -147,8 +149,6 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
                     key: _secondformKey,
                     child: Column(
                       children: [
-                        // !!!!!!!!!!!!!Here create dropdown to select org type!!!!!!
-
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
@@ -224,6 +224,58 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
                             },
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _phonenumController,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(
+                                  left: 16, top: 12, bottom: 12, right: 16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.00),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              hintText: "Enter Your phone number",
+                            ),
+                            style: const TextStyle(
+                                fontSize: 20.0, color: Colors.black),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _usersocialmediaController,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.only(
+                                  left: 16, top: 12, bottom: 12, right: 16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.00),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              hintText: "Enter Your socialmedia profile link",
+                            ),
+                            style: const TextStyle(
+                                fontSize: 20.0, color: Colors.black),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+
+                        // !!!!!!!!!!!!!!!!!!!here create the dropdown for gender selection!!!!!!!!
                       ],
                     )),
               ],
@@ -232,8 +284,11 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
             state: currentStep > 2 ? StepState.complete : StepState.indexed,
             isActive: currentStep >= 2,
             title: const Text("Submit"),
-            content: Container(
-              child: const Text("Savan"),
-            )),
+            content: Column(
+              children: [
+                // !!!!!!!!write here code to upload Document from user!!!!!!!!!!!!!
+              ],
+            ),
+            ),
       ];
 }
