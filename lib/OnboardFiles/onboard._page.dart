@@ -1,6 +1,5 @@
 import 'package:equalista/Constants/Stringconstant.dart';
 import 'package:equalista/SignupFiles/loginpage.dart';
-import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
