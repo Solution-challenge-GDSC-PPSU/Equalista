@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'OrganizationHomePage.dart';
@@ -13,6 +14,7 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
   int currentStep = 0;
   final _firstformKey = GlobalKey<FormState>();
   final _secondformKey = GlobalKey<FormState>();
+  FilePickerResult? result;
 
   final TextEditingController _orgnameController = TextEditingController();
   final TextEditingController _orglinkController = TextEditingController();
@@ -36,6 +38,7 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
             steps: getSteps(),
             currentStep: currentStep,
             onStepContinue: () {
+
               final isLastStep = currentStep == getSteps().length - 1;
               if (isLastStep) {
                 Navigator.push(
@@ -66,6 +69,19 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
     ));
   }
 
+  String selectedOrganizationtype = 'Education';
+  String selectedGender = 'Male';
+  var typesOfOrganization = [
+    "Education",
+    "Company",
+  ];
+  
+  var gender =[
+    "Male",
+    "Female"
+  ];
+
+
   List<Step> getSteps() => [
         Step(
             state: currentStep > 0 ? StepState.complete : StepState.indexed,
@@ -81,62 +97,108 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
                     key: _firstformKey,
                     child: Column(
                       children: [
-                        // !!!!!!!!!!!!!Here create dropdown to select org type!!!!!!
-
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _orgnameController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Organization Name",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
+                        DropdownButtonFormField(
+                            items: typesOfOrganization.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (value){
+                              setState(() {
+                                selectedOrganizationtype = value as String;
+                              });
                             },
+                          value: selectedOrganizationtype,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle,
+                            color: Colors.lightBlueAccent,
+                          ),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            labelText: "Select Types Organization",
+                            prefixIcon: Icon(
+                              Icons.school_outlined,
+                              color: Colors.lightBlueAccent,
+                            ),
                           ),
                         ),
+
+                        SizedBox(height: 15,),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _orglinkController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Organization Website Link",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                            padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Organization name", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _orgnameController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the organization name",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Website link", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _orglinkController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the organization name",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
                           ),
                         ),
                       ],
                     )),
               ],
-            )),
+            ),
+        ),
+
         Step(
             state: currentStep > 1 ? StepState.complete : StepState.indexed,
             isActive: currentStep >= 1,
@@ -149,144 +211,244 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
                     key: _secondformKey,
                     child: Column(
                       children: [
+
+                        SizedBox(height: 15,),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _nameController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Your Name",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _roleController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Your role in organization",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Your official email",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _phonenumController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Your phone number",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            controller: _usersocialmediaController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 16, top: 12, bottom: 12, right: 16),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.00),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              hintText: "Enter Your socialmedia profile link",
-                            ),
-                            style: const TextStyle(
-                                fontSize: 20.0, color: Colors.black),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Name", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _nameController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the name",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter name';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
                           ),
                         ),
 
-                        // !!!!!!!!!!!!!!!!!!!here create the dropdown for gender selection!!!!!!!!
+
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Rol", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _roleController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the rol",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter name';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+
+
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Email", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the official email",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter name';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+
+
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Phone Number", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _phonenumController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the phone number",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter name';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 15,),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Socialmedia Profile", textAlign: TextAlign.left, style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),),
+                              SizedBox(height: 5,),
+                              TextFormField(
+                                controller: _usersocialmediaController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter the socialmedia profile link",
+                                  border: OutlineInputBorder(),
+                                  focusColor: Colors.white10,
+                                  focusedBorder: OutlineInputBorder(
+                                    // borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.black38,
+                                    ),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter name';
+                                  }
+                                  return null;
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+
+                        DropdownButtonFormField(
+                          items: gender.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          onChanged: (value){
+                            setState(() {
+                              selectedGender = value as String;
+                            });
+                          },
+                          value: selectedGender,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle,
+                            color: Colors.lightBlueAccent,
+                          ),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            labelText: "Gender",
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.lightBlueAccent,
+                            ),
+                          ),
+                        ),
                       ],
                     )),
               ],
             )),
+
         Step(
             state: currentStep > 2 ? StepState.complete : StepState.indexed,
             isActive: currentStep >= 2,
             title: const Text("Submit"),
             content: Column(
               children: [
-                // !!!!!!!!write here code to upload Document from user!!!!!!!!!!!!!
+                OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.black38,
+                    ),
+                    onPressed: ()async{
+                      result = await FilePicker.platform.pickFiles(type: FileType.any);
+                      print(result!.files.first.path);
+                    },
+                    child: Container(
+                      // width: width * 0.70,
+                      height: 45,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.file_upload),
+                          SizedBox(width: 12,),
+                          Text("Upload file",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ))
               ],
             ),
             ),
