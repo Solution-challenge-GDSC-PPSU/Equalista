@@ -1,3 +1,4 @@
+import 'package:action_slider/action_slider.dart';
 import 'package:equalista/Globalservices/firebase_helper.dart';
 import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
@@ -27,32 +28,23 @@ class _LoginpageState extends State<Loginpage> {
             SizedBox(
               height: 20,
             ),
-            OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.black38,
-                  // backgroundColor: Colors.lightBlue.shade100,
-                ),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
-                     // DialogBuilder(context).showLoadingIndicator();
-                  // FirebaseHelper.signInWithGoogle().then((value) {
-                  //    DialogBuilder(context).hideOpenDialog();
-                  //   Get.to(() => Role_Selectpage());
-                  // });
-                },
-                child: Container(
-                  width: width * 0.70,
-                  height: 45,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add_circle_outline),
-                      Text("Continue With Google",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                ))
+            ActionSlider.standard(
+              width: 300.0,
+              icon: Icon(Icons.done,),
+              child: const Text('Slide To Confirm'),
+              action: (controller) async {
+                controller.loading();
+                await Future.delayed(const Duration(seconds: 3));
+                controller.success();
+                await Future.delayed(const Duration(seconds: 1));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
+                // DialogBuilder(context).showLoadingIndicator();
+                // FirebaseHelper.signInWithGoogle().then((value) {
+                //    DialogBuilder(context).hideOpenDialog();
+                //   Get.to(() => Role_Selectpage());
+                // });
+              },
+            ),
           ],
         ),
       ),
