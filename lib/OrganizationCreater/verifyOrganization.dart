@@ -281,14 +281,14 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
               ],
             )),
         Step(
-            state: currentStep > 2 ? StepState.complete : StepState.indexed,
-            isActive: currentStep >= 2,
-            title: const Text("Submit"),
-            content: Column(
-              children: [
-                // !!!!!!!!write here code to upload Document from user!!!!!!!!!!!!!
-              ],
-            ),
-            ),
+          state: currentStep > 2 ? StepState.complete : StepState.indexed,
+          isActive: currentStep >= 2,
+          title: const Text("Submit"),
+          content: Column(
+            children: [
+              // !!!!!!!!write here code to upload Document from user!!!!!!!!!!!!!
+            ],
+          ),
+        ),
       ];
 }

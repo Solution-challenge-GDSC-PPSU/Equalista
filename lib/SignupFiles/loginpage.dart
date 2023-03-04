@@ -20,32 +20,32 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               maxRadius: 170,
               backgroundImage: AssetImage("assets/logo.png"),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  primary: Colors.black38,
+                  foregroundColor: Colors.black38,
                   // backgroundColor: Colors.lightBlue.shade100,
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
-                     // DialogBuilder(context).showLoadingIndicator();
-                  // FirebaseHelper.signInWithGoogle().then((value) {
-                  //    DialogBuilder(context).hideOpenDialog();
-                  //   Get.to(() => Role_Selectpage());
-                  // });
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
+                  // DialogBuilder(context).showLoadingIndicator();
+                  FirebaseHelper.signInWithGoogle().then((value) {
+                    // DialogBuilder(context).hideOpenDialog();
+                    Get.to(() => const Role_Selectpage());
+                  });
                 },
-                child: Container(
+                child: SizedBox(
                   width: width * 0.70,
                   height: 45,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.add_circle_outline),
                       Text("Continue With Google",
                           textAlign: TextAlign.center,
@@ -59,7 +59,6 @@ class _LoginpageState extends State<Loginpage> {
     ));
   }
 }
-
 
 class DialogBuilder {
   DialogBuilder(this.context);
