@@ -39,6 +39,9 @@ dependencies:
   firebase_core: ^2.7.0
   google_sign_in: ^6.0.1
   get: ^4.6.5
+  file_picker: ^5.2.5
+  action_slider: ^0.6.1
+
 
 dev_dependencies:
   flutter_test:
