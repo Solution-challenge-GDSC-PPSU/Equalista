@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equalista/Constants/Stringconstant.dart';
+import 'package:equalista/UserFiles/u_homepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../OrganizationCreater/verifyOrganization.dart';
 
@@ -13,6 +17,34 @@ class Role_Selectpage extends StatefulWidget {
 class _Role_SelectpageState extends State<Role_Selectpage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _codeController = TextEditingController();
+  final orgdbref = FirebaseFirestore.instance.collection('Organization');
+
+  Future<void> joinorganization() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    var orgcode = _codeController.text;
+    var userdata =
+        await orgdbref.doc(orgcode).collection("Group").doc(user?.uid).get();
+    if (userdata.exists) {
+      print("User already exists");
+      Get.snackbar(
+        "Welcome again",
+        "already joined",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orange,
+      );
+      Get.to(() => const U_homepage());
+    } else {
+      print("User does not exists");
+      await orgdbref.doc(orgcode).collection("Group").doc(user?.uid).set({
+        "Name": user?.displayName,
+        "Email": user?.email,
+        "Role": "Member",
+        "ProfilePic": user?.photoURL,
+        "uid": user?.uid,
+      });
+      Get.to(() => const U_homepage());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +59,7 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
               Padding(
                 padding: EdgeInsets.only(top: height * 0.1),
                 child: Text("Welcome to \nthe ${Stringconst.appname}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     )),
@@ -70,9 +102,10 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                       InkWell(
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')));
+                            joinorganization();
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(
+                            //         content: Text('Processing Data')));
                           }
                         },
                         child: Container(
@@ -95,8 +128,12 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                         height: height * 0.02,
                       ),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyOrganization()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VerifyOrganization()));
                         },
                         child: Container(
                           height: height * 0.06,
@@ -105,8 +142,8 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:
-                          const Center(child: Text("Create an Organization")),
+                          child: const Center(
+                              child: Text("Create an Organization")),
                         ),
                       )
                     ],

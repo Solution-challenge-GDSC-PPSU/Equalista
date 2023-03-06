@@ -43,7 +43,7 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
 
               final isLastStep = currentStep == getSteps().length - 1;
               if (isLastStep) {
-                database.collection('Organization').add({
+                database.collection('Organization').doc(_orgnameController.text.trim()).set({
                 'Type': selectedOrganizationtype,
                 'Name': _orgnameController.text,
                 'Website': _orglinkController.text,
