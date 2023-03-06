@@ -21,7 +21,7 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            const CircleAvatar( 
               maxRadius: 170,
               backgroundImage: AssetImage("assets/logo.png"),
             ),
