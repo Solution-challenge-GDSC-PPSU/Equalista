@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class OrganizationHomePage extends StatefulWidget {
@@ -12,7 +13,12 @@ class _OrganizationHomePageState extends State<OrganizationHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       body: Center(
-        child: Image.asset("assets/logo.png"),
+        child: Column(
+          children: [
+            Image.asset("assets/logo.png"),
+
+          ],
+        ),
       ),
     ));
   }

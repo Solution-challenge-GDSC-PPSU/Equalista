@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,9 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
   final TextEditingController _phonenumController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usersocialmediaController =
-      TextEditingController();
+  final TextEditingController _usersocialmediaController = TextEditingController();
+  // DatabaseReference organizationRef = FirebaseDatabase.instance.ref("Organization");
+  final database = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +43,18 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
 
               final isLastStep = currentStep == getSteps().length - 1;
               if (isLastStep) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OrganizationHomePage()));
+                database.collection('Organization').add({
+                'Type': selectedOrganizationtype,
+                'Name': _orgnameController.text,
+                'Website': _orglinkController.text,
+                'Other_Name': _nameController.text,
+                'Other_Rol': _roleController.text,
+                'Other_Email': _emailController.text,
+                'Other_Phone_Number': _phonenumController.text,
+                'Other_Social_Media_Account': _usersocialmediaController.text,
+                'Other_Gender': selectedGender,
+              });
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const OrganizationHomePage()));
               } else {
                 setState(() {
                   currentStep++;
