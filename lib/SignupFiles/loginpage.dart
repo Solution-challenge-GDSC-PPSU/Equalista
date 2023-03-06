@@ -35,8 +35,8 @@ class _LoginpageState extends State<Loginpage> {
               action: (controller) async {
                 controller.loading();
                 await Future.delayed(const Duration(seconds: 3));
-               
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Role_Selectpage()));
+                  
+              
                
                 FirebaseHelper.signInWithGoogle().then((value)async {
                    controller.success();
