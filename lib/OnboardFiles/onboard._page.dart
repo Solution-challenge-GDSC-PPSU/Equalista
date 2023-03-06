@@ -31,6 +31,7 @@ class _OnboardpageState extends State<Onboardpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(233 ,239, 253,1),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -123,13 +124,14 @@ final List<Onboard> onboarddata = [
         "The place where you find justice and Solution.",
   ),
   Onboard(
-    image: "assets/enq1.png",
+    image: "assets/enq2.png",
     title: "One stop Community",
     description:
         "Interact with our active community anonymously which is always there to help",
   ),
   Onboard(
-    image: "assets/enq1.png",
+
+    image: "assets/enq3.png",
     title: "Expert Consulatant",
     description:
         "Still didn't got solution? Take help from our consultants.",
@@ -149,17 +151,23 @@ class Onboardingtile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 30,
+        ),
         Image.asset(
           image,
-          height: 300,
-          width: 300,
+          height: 350,
+          width: 350,
         ),
-        const Spacer(),
+        SizedBox(
+          height: 55,
+        ),
+        // const Spacer(),
         Text(title,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 30,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
             )),
         const SizedBox(
           height: 10,
