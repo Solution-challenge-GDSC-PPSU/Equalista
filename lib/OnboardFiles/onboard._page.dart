@@ -120,19 +120,19 @@ final List<Onboard> onboarddata = [
     image: "assets/enq1.png",
     title: "Welcome to \nthe ${Stringconst.appname}",
     description:
-        "We are here to help you find the best \nproducts for your skin type",
+        "The place where you find justice and Solution.",
   ),
   Onboard(
     image: "assets/enq1.png",
     title: "One stop Community",
     description:
-        "We are here to help you find the best \nproducts for your skin type",
+        "Interact with our active community anonymously which is always there to help",
   ),
   Onboard(
     image: "assets/enq1.png",
     title: "Expert Consulatant",
     description:
-        "We are here to help you find the best \nproducts for your skin type",
+        "Still didn't got solution? Take help from our consultants.",
   ),
 ];
 

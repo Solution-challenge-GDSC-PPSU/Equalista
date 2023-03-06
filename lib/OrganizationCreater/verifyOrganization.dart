@@ -93,6 +93,27 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
 
 
   List<Step> getSteps() => [
+
+        Step(
+      state: currentStep > 2 ? StepState.complete : StepState.indexed,
+      isActive: currentStep >= 2,
+      title: const Text("Term and Condition"),
+      content: Column(
+        children: [
+          Text('''1. Registration: Users must be at least 18 years old to register for the platform. Users must provide accurate and complete information when registering for their respective organizations. One should have legal permission from the organization before registering. In the case of forgery and masquerade, strict legal action will be taken against the individual or on the organization.
+
+2. Use of Service: Users may use the service only for lawful purposes and in accordance with the terms and conditions. Users must not use the service to harass, defame, or otherwise harm others.
+
+3. Content: Users are solely responsible for the information they share on the platform. 
+
+4. Intellectual Property: The platform owns all intellectual property rights in the service and its content. Users may not use the platform's content without permission.
+
+5. Termination: The platform may terminate a user's account at any time for any reason. Users may also terminate their account at any time.
+          ''')
+        ],
+      ),
+    ),
+
         Step(
             state: currentStep > 0 ? StepState.complete : StepState.indexed,
             isActive: currentStep >= 0,
@@ -431,15 +452,6 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
               ],
             )),
 
-        Step(
-            state: currentStep > 2 ? StepState.complete : StepState.indexed,
-            isActive: currentStep >= 2,
-            title: const Text("Submit"),
-            content: Column(
-              children: [
-                // !!!!!!!!write here code to upload Document from user!!!!!!!!!!!!!
-              ],
-            ),
-            ),
+
       ];
 }
