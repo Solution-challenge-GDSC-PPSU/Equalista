@@ -28,7 +28,29 @@ class _U_homepageState extends State<U_homepage> {
         .doc(postid)
         .collection('likes')
         .doc(user!.uid)
-        .set({'uid': user.uid});
+        .get()
+        .then((value) async {
+      if (value.exists) {
+        Get.snackbar("Sorry", "Already liked",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.orange,
+            colorText: Colors.white);
+      } else {
+        await FirebaseFirestore.instance
+            .collection('Posthub')
+            .doc(postid)
+            .collection('likes')
+            .doc(user.uid)
+            .set({'uid': user.uid});
+
+        await FirebaseFirestore.instance
+            .collection('Posthub')
+            .doc(postid)
+            .update({
+          'likes': FieldValue.increment(1),
+        });
+      }
+    });
   }
 
   Future<void> starpost(String postid) async {
@@ -38,7 +60,29 @@ class _U_homepageState extends State<U_homepage> {
         .doc(postid)
         .collection('star')
         .doc(user!.uid)
-        .delete();
+        .get()
+        .then((value) async {
+      if (value.exists) {
+        Get.snackbar("Sorry", "Already liked",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.orange,
+            colorText: Colors.white);
+      } else {
+        await FirebaseFirestore.instance
+            .collection('Posthub')
+            .doc(postid)
+            .collection('star')
+            .doc(user.uid)
+            .set({'uid': user.uid});
+
+        await FirebaseFirestore.instance
+            .collection('Posthub')
+            .doc(postid)
+            .update({
+          'star': FieldValue.increment(1),
+        });
+      }
+    });
   }
 
   @override
@@ -109,7 +153,7 @@ class _U_homepageState extends State<U_homepage> {
                                 color: fromHex('#F2F2F2'),
                                 fontWeight: FontWeight.bold)),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(
                                 onPressed: (() {
@@ -117,12 +161,22 @@ class _U_homepageState extends State<U_homepage> {
                                 }),
                                 icon: const Icon(Icons.thumb_up,
                                     color: Colors.white, size: 30)),
+                            Text(data['likes'].toString(),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: fromHex('#F2F2F2'),
+                                    fontWeight: FontWeight.bold)),
                             IconButton(
                                 onPressed: (() {
                                   starpost(document.id);
                                 }),
                                 icon: const Icon(Icons.star,
                                     color: Colors.white, size: 30)),
+                            Text(data['star'].toString(),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: fromHex('#F2F2F2'),
+                                    fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ],

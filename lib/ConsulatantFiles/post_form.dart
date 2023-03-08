@@ -32,7 +32,9 @@ class _Post_formState extends State<Post_form> {
         title: _titleController.text.trim(),
         description: _descriptionController.text.trim(),
         anonymous: manageanonymicity,
-        date: DateTime.now());
+        date: DateTime.now(),
+        likes: 0,
+        star: 0,);
     await FirebaseFirestore.instance.collection('Posthub').doc(uuuid).set(
           npost.toMap(),
         );

@@ -5,6 +5,8 @@ class Post {
   String description;
   String anonymous;
   DateTime date;
+  int likes;
+  int star;
 
   Post(
       {required this.post_id,
@@ -12,7 +14,10 @@ class Post {
       required this.title,
       required this.description,
       required this.anonymous,
-      required this.date});
+      required this.date,
+      required this.likes,
+      required this.star
+      });
 
   Map<String, dynamic> toMap() {
     return {
@@ -22,6 +27,8 @@ class Post {
       'description': description,
       'anonymous': anonymous,
       'date': date,
+      'likes': likes,
+      'star': star
     };
   }
 }
