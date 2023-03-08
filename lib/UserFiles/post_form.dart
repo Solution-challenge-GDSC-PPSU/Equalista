@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equalista/ConsulatantFiles/Models/Post.dart';
+
 import 'package:equalista/UserFiles/u_homepage.dart';
 import 'package:equalista/UserFiles/u_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
+
+import '../UserFiles/Models/Post.dart';
 
 class Post_form extends StatefulWidget {
   const Post_form({super.key});
