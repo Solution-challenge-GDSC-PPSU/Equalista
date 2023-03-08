@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equalista/UserFiles/post_form.dart';
 import 'package:equalista/UserFiles/u_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../ConsulatantFiles/post_form.dart';
+
 
 Color fromHex(String hexString) {
   final buffer = StringBuffer();

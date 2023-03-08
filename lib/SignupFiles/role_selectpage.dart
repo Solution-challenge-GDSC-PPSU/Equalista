@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equalista/Constants/Stringconstant.dart';
+import 'package:equalista/ConsulatantFiles/c_navbar.dart';
 import 'package:equalista/UserFiles/u_homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,27 +23,37 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
   Future<void> joinorganization() async {
     User? user = FirebaseAuth.instance.currentUser;
     var orgcode = _codeController.text;
-    var userdata =
-        await orgdbref.doc(orgcode).collection("Group").doc(user?.uid).get();
-    if (userdata.exists) {
-      print("User already exists");
-      Get.snackbar(
-        "Welcome again",
-        "already joined",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.orange,
-      );
-      Get.to(() => const U_homepage());
+    var admin = await orgdbref.doc(orgcode).get();
+    if (admin['Other_Email'] == user!.email) {
+      Get.snackbar("Welcome", "You are the admin of this organization",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.orange,
+          colorText: Colors.white);
+
+      Get.to(() => const C_navbar());
     } else {
-      print("User does not exists");
-      await orgdbref.doc(orgcode).collection("Group").doc(user?.uid).set({
-        "Name": user?.displayName,
-        "Email": user?.email,
-        "Role": "Member",
-        "ProfilePic": user?.photoURL,
-        "uid": user?.uid,
-      });
-      Get.to(() => const U_homepage());
+      var userdata =
+          await orgdbref.doc(orgcode).collection("Group").doc(user.uid).get();
+      if (userdata.exists) {
+        print("User already exists");
+        Get.snackbar(
+          "Welcome again",
+          "already joined",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.orange,
+        );
+        Get.to(() => const U_homepage());
+      } else {
+        print("User does not exists");
+        await orgdbref.doc(orgcode).collection("Group").doc(user.uid).set({
+          "Name": user.displayName,
+          "Email": user.email,
+          "Role": "Member",
+          "ProfilePic": user.photoURL,
+          "uid": user.uid,
+        });
+        Get.to(() => const U_homepage());
+      }
     }
   }
 

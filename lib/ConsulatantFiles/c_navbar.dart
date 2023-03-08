@@ -1,4 +1,5 @@
 import 'package:equalista/ConsulatantFiles/c_homepage.dart';
+import 'package:equalista/ConsulatantFiles/groupmembers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,6 +14,7 @@ class C_navbar extends StatefulWidget {
 class _C_navbarState extends State<C_navbar> {
    List pages = [
     const C_homepage(),
+    Groupmember(),
     const C_homepage(),
   ];
   int currindex = 0;
@@ -36,6 +38,7 @@ class _C_navbarState extends State<C_navbar> {
           currentIndex: currindex,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.group), label: "Group"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person), label: "Profile"),
          
