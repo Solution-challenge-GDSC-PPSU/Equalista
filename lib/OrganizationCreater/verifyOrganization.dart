@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equalista/ConsulatantFiles/c_homepage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'OrganizationHomePage.dart';
 
@@ -54,7 +56,7 @@ class _VerifyOrganizationState extends State<VerifyOrganization> {
                 'Other_Social_Media_Account': _usersocialmediaController.text,
                 'Other_Gender': selectedGender,
               });
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const OrganizationHomePage()));
+              Get.to(() => C_homepage());
               } else {
                 setState(() {
                   currentStep++;

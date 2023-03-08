@@ -1,8 +1,10 @@
 import 'package:action_slider/action_slider.dart';
-import 'package:equalista/Globalservices/firebase_helper.dart';
+
 import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Model_service/Globalservices/firebase_helper.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({Key? key}) : super(key: key);

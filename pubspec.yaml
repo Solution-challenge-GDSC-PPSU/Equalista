@@ -42,6 +42,7 @@ dependencies:
   file_picker: ^5.2.5
   action_slider: ^0.6.1
   cloud_firestore: ^4.4.3
+  uuid: ^3.0.7
 
 
 dev_dependencies:
