@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equalista/UserFiles/u_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,10 +21,33 @@ class U_homepage extends StatefulWidget {
 }
 
 class _U_homepageState extends State<U_homepage> {
+  Future<void> likepost(String postid) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await FirebaseFirestore.instance
+        .collection('Posthub')
+        .doc(postid)
+        .collection('likes')
+        .doc(user!.uid)
+        .set({'uid': user.uid});
+  }
+
+  Future<void> starpost(String postid) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await FirebaseFirestore.instance
+        .collection('Posthub')
+        .doc(postid)
+        .collection('star')
+        .doc(user!.uid)
+        .delete();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: fromHex('#BAD7E9'),
       appBar: AppBar(
+        shadowColor: fromHex('#F2F2F2'),
+        backgroundColor: const Color(0xFF1C3E66),
         title: const Text('User Homepage'),
         actions: [
           IconButton(
@@ -88,11 +112,15 @@ class _U_homepageState extends State<U_homepage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(
-                                onPressed: (() {}),
+                                onPressed: (() {
+                                  likepost(document.id);
+                                }),
                                 icon: const Icon(Icons.thumb_up,
                                     color: Colors.white, size: 30)),
                             IconButton(
-                                onPressed: (() {}),
+                                onPressed: (() {
+                                  starpost(document.id);
+                                }),
                                 icon: const Icon(Icons.star,
                                     color: Colors.white, size: 30)),
                           ],

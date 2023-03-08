@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equalista/ConsulatantFiles/Models/Post.dart';
 import 'package:equalista/UserFiles/u_homepage.dart';
+import 'package:equalista/UserFiles/u_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class _Post_formState extends State<Post_form> {
         backgroundColor: Colors.green,
         colorText: Colors.white);
 
-    Get.offAll(() => U_homepage());
+    Get.offAll(() => const U_navbar());
   }
 
   @override
