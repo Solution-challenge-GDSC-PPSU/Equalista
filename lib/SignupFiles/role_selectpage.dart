@@ -24,7 +24,8 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
     User? user = FirebaseAuth.instance.currentUser;
     var orgcode = _codeController.text;
     var admin = await orgdbref.doc(orgcode).get();
-    if (admin['Other_Email'] == user!.email) {
+    String myemail=user!.email.toString();
+    if (admin['Other_Email'] == myemail) {
       Get.snackbar("Welcome", "You are the admin of this organization",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.orange,
@@ -111,9 +112,9 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                         height: height * 0.02,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async{
                           if (_formKey.currentState!.validate()) {
-                            joinorganization();
+                            await joinorganization();
                             // ScaffoldMessenger.of(context).showSnackBar(
                             //     const SnackBar(
                             //         content: Text('Processing Data')));
