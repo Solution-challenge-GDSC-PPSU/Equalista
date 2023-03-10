@@ -34,13 +34,13 @@ class _LoginpageState extends State<Loginpage> {
               child: const Text('Slide To Confirm'),
               action: (controller) async {
                 controller.loading();
-                await Future.delayed(const Duration(seconds: 3));
-                FirebaseHelper.signInWithGoogle().then((value)async {
-                   controller.success();
-                await Future.delayed(const Duration(seconds: 1));
-               
+                // await Future.delayed(const Duration(seconds: 3));
+                // FirebaseHelper.signInWithGoogle().then((value)async {
+                //    controller.success();
+                // await Future.delayed(const Duration(seconds: 1));
+                //
                   Get.to(() => Role_Selectpage());
-                });
+                // });
               },
             ),
           ],
