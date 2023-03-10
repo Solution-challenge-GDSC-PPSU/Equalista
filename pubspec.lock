@@ -97,6 +97,17 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+<<<<<<< HEAD
+=======
+  dio:
+    dependency: transitive
+    description:
+      name: dio
+      sha256: "2644a9e0965a7aa3deb09cb8ce4081db4450c178f472818c8cd34216a3070d7b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
+>>>>>>> 3a3377d43e851379def6edcc6a663c89695cbce1
   fake_async:
     dependency: transitive
     description:
@@ -165,10 +176,10 @@ packages:
     dependency: transitive
     description:
       name: firebase_core_web
-      sha256: "291fbcace608aca6c860652e1358ef89752be8cc3ef227f8bbcd1e62775b833a"
+      sha256: "0c1cf1f1022d2245ac117443bb95207952ca770281524d2908e323bc063fb8ff"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -236,18 +247,18 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in_android
-      sha256: f27bd56527c567594167bd0a46f7ceb93122ed064d2eee612413d6af0bb2e2e5
+      sha256: "6a740e8498920ecf5fc2849ae0e4412536d700230bc3169493a1d031fdfe1cca"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.7"
+    version: "6.1.8"
   google_sign_in_ios:
     dependency: transitive
     description:
       name: google_sign_in_ios
-      sha256: "2575ef0d06dbe6923cedf39766da8305d407bb891d9f4a59502c642719776c5c"
+      sha256: "2e1df687b17f7fddcaf9a0c7f994d0d19b5d41e8ce1d943013befd0a0ae67403"
       url: "https://pub.dev"
     source: hosted
-    version: "5.6.0"
+    version: "5.6.1"
   google_sign_in_platform_interface:
     dependency: transitive
     description:
@@ -260,10 +271,10 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in_web
-      sha256: "824b42c0a0b01c062bf3b1d555432d84c8b1dd0c5bbf0773514e574f02be9f95"
+      sha256: "9f883b9b525297663510dfbbe8b04d39715aa0abba430851f501b7d1e4b0f465"
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.0+1"
+    version: "0.11.0+2"
   http:
     dependency: transitive
     description:
