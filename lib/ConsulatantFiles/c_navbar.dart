@@ -40,8 +40,7 @@ class _C_navbarState extends State<C_navbar> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.group), label: "Group"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: "Profile"),
-         
+                icon: Icon(Icons.wechat_outlined), label: "Chat Bot"),
           ]),
     );
   }

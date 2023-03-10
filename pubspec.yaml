@@ -43,10 +43,9 @@ dependencies:
   action_slider: ^0.6.1
   cloud_firestore: ^4.4.3
   uuid: ^3.0.7
-  flutter_localizations:
-    sdk: flutter
-  shared_preferences: ^2.0.18
-  
+  chat_gpt_sdk: ^2.0.2
+  velocity_x: ^3.6.0
+  flutter_translate: ^3.0.0
 
 
 dev_dependencies:

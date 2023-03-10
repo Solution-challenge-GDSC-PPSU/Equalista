@@ -1,9 +1,7 @@
 import 'package:action_slider/action_slider.dart';
-
 import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Model_service/Globalservices/firebase_helper.dart';
 
 class Loginpage extends StatefulWidget {
@@ -37,9 +35,6 @@ class _LoginpageState extends State<Loginpage> {
               action: (controller) async {
                 controller.loading();
                 await Future.delayed(const Duration(seconds: 3));
-                  
-              
-               
                 FirebaseHelper.signInWithGoogle().then((value)async {
                    controller.success();
                 await Future.delayed(const Duration(seconds: 1));

@@ -79,6 +79,7 @@ class _OnboardpageState extends State<Onboardpage> {
                           curve: Curves.ease);
                     },
                     child: const Icon(Icons.arrow_forward_ios),
+                    backgroundColor: Colors.lightBlue,
                   ),
                 ),
               ],

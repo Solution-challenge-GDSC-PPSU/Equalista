@@ -113,12 +113,13 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                       ),
                       InkWell(
                         onTap: () async{
-                          if (_formKey.currentState!.validate()) {
-                            await joinorganization();
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //     const SnackBar(
-                            //         content: Text('Processing Data')));
-                          }
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>C_navbar()));
+                          // if (_formKey.currentState!.validate()) {
+                          //   await joinorganization();
+                          //   // ScaffoldMessenger.of(context).showSnackBar(
+                          //   //     const SnackBar(
+                          //   //         content: Text('Processing Data')));
+                          // }
                         },
                         child: Container(
                           height: height * 0.06,
