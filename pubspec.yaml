@@ -43,6 +43,10 @@ dependencies:
   action_slider: ^0.6.1
   cloud_firestore: ^4.4.3
   uuid: ^3.0.7
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.0.18
+  
 
 
 dev_dependencies:
