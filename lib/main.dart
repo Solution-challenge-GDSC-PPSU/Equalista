@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-
+import 'ConsulatantFiles/c_navbar.dart';
 import 'UserFiles/u_navbar.dart';
 
 void main() async {
@@ -15,7 +15,7 @@ void main() async {
     fallbackLocale: 'en_US',
     supportedLocales: ['en_US', 'fr_FR'],
   );
-  runApp(LocalizedApp(delegate, MyApp()));
+  runApp(LocalizedApp(delegate, const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,15 +24,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.lightBlue
-
-      ),
+       
+      theme: ThemeData(useMaterial3: true, primaryColor: Colors.lightBlue),
       debugShowCheckedModeBanner: false,
       home: FirebaseAuth.instance.currentUser == null
           ? const Onboardpage()
-          : const U_navbar(),
+          : const C_navbar(),
     );
   }
 }

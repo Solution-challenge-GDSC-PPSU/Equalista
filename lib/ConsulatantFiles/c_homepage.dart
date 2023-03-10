@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 // import 'package:flutter_translate/flutter_translate.dart';
 
-class C_homepage extends StatefulWidget{
+class C_homepage extends StatefulWidget {
   const C_homepage({super.key});
 
   @override
@@ -31,7 +31,7 @@ class _C_homepageState extends State<C_homepage> {
   void initState() {
     chatGPT = OpenAI.instance.build(
         token: "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",
-        baseOption: HttpSetup(receiveTimeout: Duration (seconds: 60000)));
+        baseOption: HttpSetup(receiveTimeout: Duration(seconds: 60000)));
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _C_homepageState extends State<C_homepage> {
     super.dispose();
   }
 
-  void _sendMessage()async{
+  Future<void> _sendMessage() async {
     ChatMessage message = ChatMessage(
       text: _controller.text,
       sender: "User",
@@ -51,7 +51,9 @@ class _C_homepageState extends State<C_homepage> {
       _messages.insert(0, message);
     });
     _controller.clear();
-    final request =    CompleteText(prompt: message.text, model: kTranslateModelV3);
+    print(message.text);
+    final request =
+        CompleteText(prompt: message.text, model: kTranslateModelV3);
     final response = await chatGPT!.onCompletion(request: request);
     Vx.log(response!.choices[0].text);
     insertNewData(response.choices[0].text);
@@ -67,7 +69,7 @@ class _C_homepageState extends State<C_homepage> {
     });
   }
 
-  Widget _buildTextComposer(){
+  Widget _buildTextComposer() {
     return Row(
       children: [
         Expanded(
@@ -88,34 +90,30 @@ class _C_homepageState extends State<C_homepage> {
     ).px8();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat Bot'),
-      ),
-      drawer: const C_drawer(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Flexible(
-                child: ListView.builder(
-                    reverse: true,
-                    padding: Vx.m8,
-                    itemCount: _messages.length,
-                    itemBuilder: (context, index){
-                  return _messages[index];
-                })),
-            Container(
-              decoration: BoxDecoration(
-                color: context.cardColor
-              ),
-              child: _buildTextComposer(),
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('Chat Bot'),
         ),
-      )
-    );
+        drawer: const C_drawer(),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Flexible(
+                  child: ListView.builder(
+                      reverse: true,
+                      padding: Vx.m8,
+                      itemCount: _messages.length,
+                      itemBuilder: (context, index) {
+                        return _messages[index];
+                      })),
+              Container(
+                decoration: BoxDecoration(color: context.cardColor),
+                child: _buildTextComposer(),
+              )
+            ],
+          ),
+        ));
   }
 }
