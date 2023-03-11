@@ -1,3 +1,4 @@
+import 'package:equalista/UserFiles/u_chatgpt.dart';
 import 'package:equalista/UserFiles/u_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -13,7 +14,7 @@ class U_navbar extends StatefulWidget {
 class _U_navbarState extends State<U_navbar> {
   List pages = [
     const U_homepage(),
-    const U_homepage(),
+    U_chatgpt(),
   ];
   int currindex = 0;
   void ontap(int index) {
@@ -36,7 +37,7 @@ class _U_navbarState extends State<U_navbar> {
           currentIndex: currindex,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+            BottomNavigationBarItem(icon: Icon(Icons.bolt_outlined), label: "Boat"),
           ]),
     );
   }

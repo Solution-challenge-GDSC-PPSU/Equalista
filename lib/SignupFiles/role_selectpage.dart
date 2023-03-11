@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equalista/Constants/Stringconstant.dart';
 import 'package:equalista/ConsulatantFiles/c_navbar.dart';
-import 'package:equalista/UserFiles/u_homepage.dart';
+import 'package:equalista/UserFiles/u_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Model_service/Globalservices/langcontroller.dart';
 import '../OrganizationCreater/verifyOrganization.dart';
 
 class Role_Selectpage extends StatefulWidget {
@@ -19,12 +19,13 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _codeController = TextEditingController();
   final orgdbref = FirebaseFirestore.instance.collection('Organization');
+  Lang_controller langcontroller = Get.put(Lang_controller());
 
   Future<void> joinorganization() async {
     User? user = FirebaseAuth.instance.currentUser;
     var orgcode = _codeController.text;
     var admin = await orgdbref.doc(orgcode).get();
-    String myemail=user!.email.toString();
+    String myemail = user!.email.toString();
     if (admin['Other_Email'] == myemail) {
       Get.snackbar("Welcome", "You are the admin of this organization",
           snackPosition: SnackPosition.BOTTOM,
@@ -43,7 +44,7 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.orange,
         );
-        Get.to(() => const U_homepage());
+        Get.to(() => const U_navbar());
       } else {
         print("User does not exists");
         await orgdbref.doc(orgcode).collection("Group").doc(user.uid).set({
@@ -53,7 +54,7 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
           "ProfilePic": user.photoURL,
           "uid": user.uid,
         });
-        Get.to(() => const U_homepage());
+        Get.to(() => const U_navbar());
       }
     }
   }
@@ -69,8 +70,9 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: height * 0.1),
-                child: Text("Welcome to \nthe ${Stringconst.appname}",
+                padding: EdgeInsets.only(top: height * 0.1, right: 8, left: 8),
+                child: Text("Welcome to the Equalista".tr,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -112,14 +114,14 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                         height: height * 0.02,
                       ),
                       InkWell(
-                        onTap: () async{
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>C_navbar()));
-                          // if (_formKey.currentState!.validate()) {
-                          //   await joinorganization();
-                          //   // ScaffoldMessenger.of(context).showSnackBar(
-                          //   //     const SnackBar(
-                          //   //         content: Text('Processing Data')));
-                          // }
+                        onTap: () async {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=>C_navbar()));
+                          if (_formKey.currentState!.validate()) {
+                            await joinorganization();
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(
+                            //         content: Text('Processing Data')));
+                          }
                         },
                         child: Container(
                           height: height * 0.06,

@@ -35,12 +35,12 @@ class _LoginpageState extends State<Loginpage> {
               action: (controller) async {
                 controller.loading();
                 // await Future.delayed(const Duration(seconds: 3));
-                // FirebaseHelper.signInWithGoogle().then((value)async {
-                //    controller.success();
-                // await Future.delayed(const Duration(seconds: 1));
-                //
+                FirebaseHelper.signInWithGoogle().then((value)async {
+                   controller.success();
+                await Future.delayed(const Duration(seconds: 1));
+                
                   Get.to(() => Role_Selectpage());
-                // });
+                });
               },
             ),
           ],

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:equalista/ConsulatantFiles/c_drawer.dart';
 import 'package:equalista/UserFiles/chatGPTModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -9,11 +8,11 @@ import 'package:http/http.dart' as http;
 const backgroundColor = Colors.white;
 const botBackgroundColor = Colors.white;
 
-class C_homepage extends StatefulWidget {
-  const C_homepage({super.key});
+class U_chatgpt extends StatefulWidget {
+  const U_chatgpt({super.key});
 
   @override
-  State<C_homepage> createState() => _C_homepageState();
+  State<U_chatgpt> createState() => _U_chatgptState();
 }
 
 Future<String> generateResponse(String prompt) async {
@@ -67,8 +66,8 @@ class ChatMessageWidget extends StatelessWidget {
           chatMessageType == ChatMessageType.bot
               ? Container(
                   margin: const EdgeInsets.only(right: 10.0, top: 10),
-                  child: const CircleAvatar(
-                    backgroundColor: Color.fromRGBO(16, 163, 127, 1),
+                  child: CircleAvatar(
+                    backgroundColor: const Color.fromRGBO(16, 163, 127, 1),
                     child: Text(
                       'Bot',
                     ),
@@ -104,7 +103,7 @@ class ChatMessageWidget extends StatelessWidget {
   }
 }
 
-class _C_homepageState extends State<C_homepage> {
+class _U_chatgptState extends State<U_chatgpt> {
   final _textController = TextEditingController();
   final _scrollController = ScrollController();
   final List<ChatMessage> _messages = [];
@@ -120,12 +119,11 @@ class _C_homepageState extends State<C_homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "ChatGPT",
         ),
         backgroundColor: botBackgroundColor,
       ),
-      drawer: const C_drawer(),
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
@@ -135,7 +133,7 @@ class _C_homepageState extends State<C_homepage> {
             ),
             Visibility(
               visible: isLoading,
-              child: const Padding(
+              child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SpinKitThreeBounce(
                     color: Colors.black,

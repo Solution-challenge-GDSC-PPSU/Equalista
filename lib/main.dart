@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'ConsulatantFiles/c_navbar.dart';
+import 'Model_service/Globalservices/locale_data.dart';
 import 'UserFiles/u_navbar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.lightBlue
-      ),
+      
+      translations: LocaleString(),
+      locale: const Locale('en', 'US'),
+      theme: ThemeData(useMaterial3: true, primaryColor: Colors.lightBlue),
       debugShowCheckedModeBanner: false,
       home: FirebaseAuth.instance.currentUser == null
           ? const Onboardpage()

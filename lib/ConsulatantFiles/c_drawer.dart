@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+import '../Model_service/Globalservices/firebase_helper.dart';
 import '../OnboardFiles/onboard._page.dart';
 
 class C_drawer extends StatefulWidget {
@@ -14,6 +14,7 @@ class C_drawer extends StatefulWidget {
 }
 
 class _C_drawerState extends State<C_drawer> {
+  static final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -39,9 +40,9 @@ class _C_drawerState extends State<C_drawer> {
             ListTile(
               title: const Text("Logout"),
               onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                
-                Get.offAll(() => const Onboardpage());
+                FirebaseHelper().signOutFromGoogle().then((value) {
+                  Get.offAll(() => const Onboardpage());
+                });
               },
             ),
           ],
