@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 Color fromHex(String hexString) {
   final buffer = StringBuffer();
   if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -88,107 +86,121 @@ class _U_homepageState extends State<U_homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: fromHex('#BAD7E9'),
-      appBar: AppBar(
-        shadowColor: fromHex('#F2F2F2'),
-        backgroundColor: const Color(0xFF1C3E66),
-        title: const Text('User Homepage'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => const Post_form());
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
-      ),
-      drawer: const U_drawer(),
-      body: Container(
-          child: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Posthub').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
+    return Container(
+      // decoration: const BoxDecoration(
+      //   gradient: LinearGradient(
+      //     begin: Alignment.centerLeft,
+      //     end: Alignment.centerRight,
+      //     colors: [
+      //       // Color(0xff274c77),
+      //       // Color(0xfff4a259),
+      //       // Colors.white,
+      //     ],
+      //   ),
+      // ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          // shadowColor: fromHex('#F2F2F2'),
+          backgroundColor: Colors.transparent,
+          title: const Text('User Homepage'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.to(() => const Post_form());
+              },
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
+        drawer: const U_drawer(),
+        body: Container(
+            child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('Posthub').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Something went wrong');
+            }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-          return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-              String title =
-                  data['title'] != null ? data['title'].toString() : "";
-              String description = data['description'] != null
-                  ? data['description'].toString()
-                  : "";
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.black),
-                      color: const Color(0xFF1C3E66)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: TextStyle(
-                              color: fromHex('#F2F2F2'),
-                              fontSize: 28,
-                              fontWeight: FontWeight.w700),
-                        ),
-                        const Divider(color: Colors.white),
-                        const SizedBox(height: 10),
-                        Text(description,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: fromHex('#F2F2F2'),
-                                fontWeight: FontWeight.bold)),
-                        Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                                onPressed: (() {
-                                  likepost(document.id);
-                                }),
-                                icon: const Icon(Icons.thumb_up,
-                                    color: Colors.white, size: 30)),
-                            Text(data['likes'].toString(),
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: fromHex('#F2F2F2'),
-                                    fontWeight: FontWeight.bold)),
-                            IconButton(
-                                onPressed: (() {
-                                  starpost(document.id);
-                                }),
-                                icon: const Icon(Icons.star,
-                                    color: Colors.white, size: 30)),
-                            Text(data['star'].toString(),
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: fromHex('#F2F2F2'),
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ],
+            return ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                String title =
+                    data['title'] != null ? data['title'].toString() : "";
+                String description = data['description'] != null
+                    ? data['description'].toString()
+                    : "";
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white),
+                        color: const Color(0xffe6ebe0)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          const Divider(color: Colors.black),
+                          const SizedBox(height: 10),
+                          Text(description,
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold)),
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                  onPressed: (() {
+                                    likepost(document.id);
+                                  }),
+                                  icon: const Icon(Icons.thumb_up,
+                                      color: Colors.white, size: 30)),
+                              Text(data['likes'].toString(),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: fromHex('#F2F2F2'),
+                                      fontWeight: FontWeight.bold)),
+                              IconButton(
+                                  onPressed: (() {
+                                    starpost(document.id);
+                                  }),
+                                  icon: const Icon(Icons.star,
+                                      color: Colors.white, size: 30)),
+                              Text(data['star'].toString(),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: fromHex('#F2F2F2'),
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            }).toList(),
-          );
-        },
-      )),
+                );
+              }).toList(),
+            );
+          },
+        )),
+      ),
     );
   }
 }

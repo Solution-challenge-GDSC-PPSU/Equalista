@@ -21,7 +21,7 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar( 
+            const CircleAvatar(
               maxRadius: 170,
               backgroundImage: AssetImage("assets/logo.png"),
             ),
@@ -30,16 +30,18 @@ class _LoginpageState extends State<Loginpage> {
             ),
             ActionSlider.standard(
               width: 300.0,
-              icon: Icon(Icons.done,),
+              icon: const Icon(
+                Icons.done,
+              ),
               child: const Text('Slide To Confirm'),
               action: (controller) async {
                 controller.loading();
                 // await Future.delayed(const Duration(seconds: 3));
-                FirebaseHelper.signInWithGoogle().then((value)async {
-                   controller.success();
-                await Future.delayed(const Duration(seconds: 1));
-                
-                  Get.to(() => Role_Selectpage());
+                FirebaseHelper.signInWithGoogle().then((value) async {
+                  controller.success();
+                  await Future.delayed(const Duration(seconds: 1));
+
+                  Get.to(() => const Role_Selectpage());
                 });
               },
             ),
@@ -78,7 +80,7 @@ class DialogBuilder {
 }
 
 class LoadingIndicator extends StatelessWidget {
-  const LoadingIndicator({this.text = ''});
+  const LoadingIndicator({super.key, this.text = ''});
 
   final String text;
 
