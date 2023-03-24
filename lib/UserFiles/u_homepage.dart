@@ -87,7 +87,20 @@ class _U_homepageState extends State<U_homepage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: const BoxConstraints.expand(),
+      // height: 200,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: NetworkImage(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8mqKiV-wJn9-vR4wogZBeGXH_Q1ssZR_c1UT-XcgOq3Fn2riiXzLe6Qav4cS0SKNhWgM&usqp=CAU"),
+            fit: BoxFit.cover),
+      ),
       // decoration: const BoxDecoration(
+      //     image: DecorationImage(
+      //         image: NetworkImage(
+      //             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8mqKiV-wJn9-vR4wogZBeGXH_Q1ssZR_c1UT-XcgOq3Fn2riiXzLe6Qav4cS0SKNhWgM&usqp=CAU"))),
+      // // decoration: const BoxDecoration(
       //   gradient: LinearGradient(
       //     begin: Alignment.centerLeft,
       //     end: Alignment.centerRight,
@@ -99,11 +112,15 @@ class _U_homepageState extends State<U_homepage> {
       //   ),
       // ),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           // shadowColor: fromHex('#F2F2F2'),
+          foregroundColor: Colors.white,
           backgroundColor: Colors.transparent,
-          title: const Text('User Homepage'),
+          title: const Text(
+            'User Homepage',
+            style: TextStyle(color: Colors.white),
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -144,7 +161,7 @@ class _U_homepageState extends State<U_homepage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.white),
-                        color: const Color(0xffe6ebe0)),
+                        color: const Color(0xff272d39)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -153,17 +170,17 @@ class _U_homepageState extends State<U_homepage> {
                           Text(
                             title,
                             style: const TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontSize: 28,
-                                fontWeight: FontWeight.w700),
+                                fontWeight: FontWeight.w500),
                           ),
-                          const Divider(color: Colors.black),
+                          const Divider(color: Colors.white12),
                           const SizedBox(height: 10),
                           Text(description,
                               style: const TextStyle(
                                   fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold)),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300)),
                           Row(
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

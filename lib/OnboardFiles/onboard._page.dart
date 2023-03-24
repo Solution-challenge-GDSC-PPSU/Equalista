@@ -221,7 +221,7 @@ class Onboardingtile extends StatelessWidget {
         Text(title,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             )),
         const SizedBox(
