@@ -15,35 +15,38 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(
-              maxRadius: 170,
-              backgroundImage: AssetImage("assets/logo.png"),
-            ),
+            Image.asset("assets/homepage.png", fit: BoxFit.cover, height: height,),
             const SizedBox(
               height: 20,
             ),
-            ActionSlider.standard(
-              width: 300.0,
-              icon: const Icon(
-                Icons.done,
+            Padding(
+              padding: const EdgeInsets.only(top: 400.0),
+              child: Center(
+                child: ActionSlider.standard(
+                  width: 300.0,
+                  icon: const Icon(
+                    Icons.done,
+                  ),
+                  child: const Text('Slide To Confirm'),
+                  action: (controller) async {
+                    controller.loading();
+                    // await Future.delayed(const Duration(seconds: 3));
+                    // FirebaseHelper.signInWithGoogle().then((value) async {
+                    //   controller.success();
+                    //   await Future.delayed(const Duration(seconds: 1));
+                    //
+                      Get.to(() => const Role_Selectpage());
+                    // });
+                  },
+                ),
               ),
-              child: const Text('Slide To Confirm'),
-              action: (controller) async {
-                controller.loading();
-                // await Future.delayed(const Duration(seconds: 3));
-                // FirebaseHelper.signInWithGoogle().then((value) async {
-                //   controller.success();
-                //   await Future.delayed(const Duration(seconds: 1));
-                //
-                  Get.to(() => const Role_Selectpage());
-                // });
-              },
             ),
           ],
         ),

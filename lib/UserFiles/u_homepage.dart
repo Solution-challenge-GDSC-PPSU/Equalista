@@ -92,8 +92,8 @@ class _U_homepageState extends State<U_homepage> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: NetworkImage(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8mqKiV-wJn9-vR4wogZBeGXH_Q1ssZR_c1UT-XcgOq3Fn2riiXzLe6Qav4cS0SKNhWgM&usqp=CAU"),
+            image: AssetImage(
+                "assets/chatBG.png"),
             fit: BoxFit.cover),
       ),
       // decoration: const BoxDecoration(

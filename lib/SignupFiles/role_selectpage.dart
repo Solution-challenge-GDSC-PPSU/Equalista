@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equalista/ConsulatantFiles/c_navbar.dart';
+import 'package:equalista/OrganizationCreater/verifyOrganization.dart';
 import 'package:equalista/UserFiles/u_navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -189,20 +190,29 @@ class _Role_SelectpageState extends State<Role_Selectpage> {
                       ),
                       width: 150,
                       height: 150,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.create_rounded,
-                              size: 55,
-                              color: Colors.blue,
-                            ),
-                            Text(
-                              "Create",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.blue),
-                            )
-                          ]),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VerifyOrganization()));
+                        },
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.create_rounded,
+                                size: 55,
+                                color: Colors.blue,
+                              ),
+                              Text(
+                                "Create",
+                                style:
+                                    TextStyle(fontSize: 20, color: Colors.blue),
+                              )
+                            ]),
+                      ),
                     ),
                   ),
                 ],
