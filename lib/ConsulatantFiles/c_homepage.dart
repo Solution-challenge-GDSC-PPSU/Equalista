@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 
-const backgroundColor = Colors.white;
-const botBackgroundColor = Colors.white;
+const backgroundColor = Color(0xffC0EEF2);
+const botBackgroundColor = Color(0xffDAF5FF);
 
 class C_homepage extends StatefulWidget {
   const C_homepage({super.key});
@@ -83,7 +83,7 @@ class ChatMessageWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8, top :8),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(9.0)),
                   ),
@@ -92,7 +92,8 @@ class ChatMessageWidget extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge
-                        ?.copyWith(color: Colors.black),
+                        ?.copyWith(color: Colors.black,letterSpacing: 1.2,wordSpacing: 1
+                    ),
                   ),
                 ),
               ],
@@ -161,7 +162,15 @@ class _C_homepageState extends State<C_homepage> {
     return Visibility(
       visible: !isLoading,
       child: Container(
-        color: botBackgroundColor,
+        decoration: BoxDecoration(
+            color: Colors.white,
+           borderRadius: BorderRadius.only(
+             topLeft: Radius.circular(0),
+               topRight: Radius.circular(12),
+               bottomRight: Radius.circular(12)
+           )
+        ),
+
         child: IconButton(
           icon: const Icon(
             Icons.send_rounded,
@@ -211,7 +220,8 @@ class _C_homepageState extends State<C_homepage> {
         style: const TextStyle(color: Colors.black),
         controller: _textController,
         decoration: const InputDecoration(
-          fillColor: botBackgroundColor,
+          hintText: "Ask something",
+          fillColor: Colors.white,
           filled: true,
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
