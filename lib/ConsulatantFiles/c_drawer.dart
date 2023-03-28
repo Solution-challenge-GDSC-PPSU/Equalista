@@ -15,37 +15,50 @@ class C_drawer extends StatefulWidget {
 
 class _C_drawerState extends State<C_drawer> {
   static final GoogleSignIn googleSignIn = GoogleSignIn();
+  User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color(0xffcaf0f8),
       child: Container(
-        color: Colors.white,
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              child: Text("Equalista"),
-            ),
-            ListTile(
-              title: const Text("Home"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Profile"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Settings"),
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Logout"),
-              onTap: () async {
-                FirebaseHelper().signOutFromGoogle().then((value) {
-                  Get.offAll(() => const Onboardpage());
-                });
-              },
-            ),
-          ],
+        // color: Colors.white,
+        child: Center(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 40,
+                      child: Image.network(user!.photoURL!),
+                    ),
+                    Text(user!.email!),
+                    Text(user!.displayName!.toUpperCase())
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text("Home"),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text("Profile"),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text("Settings"),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text("Logout"),
+                onTap: () async {
+                  FirebaseHelper().signOutFromGoogle().then((value) {
+                    Get.offAll(() => const Onboardpage());
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
