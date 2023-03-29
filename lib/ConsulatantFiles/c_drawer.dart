@@ -29,28 +29,57 @@ class _C_drawerState extends State<C_drawer> {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      maxRadius: 40,
+                      maxRadius: 35,
                       child: Image.network(user!.photoURL!),
                     ),
+                    const SizedBox(height: 10),
                     Text(user!.email!),
                     Text(user!.displayName!.toUpperCase())
                   ],
                 ),
               ),
               ListTile(
-                title: const Text("Home"),
+                title: const Text(
+                  "Home",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
                 onTap: () {},
               ),
               ListTile(
-                title: const Text("Profile"),
+                title: const Text(
+                  "Profile",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
                 onTap: () {},
               ),
               ListTile(
-                title: const Text("Settings"),
+                title: const Text(
+                  "Settings",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
                 onTap: () {},
               ),
               ListTile(
-                title: const Text("Logout"),
+                title: const Text(
+                  "Logout",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
                 onTap: () async {
                   FirebaseHelper().signOutFromGoogle().then((value) {
                     Get.offAll(() => const Onboardpage());

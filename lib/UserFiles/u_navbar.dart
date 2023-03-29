@@ -1,8 +1,7 @@
+import 'package:equalista/UserFiles/u_chat.dart';
 import 'package:equalista/UserFiles/u_chatgpt.dart';
 import 'package:equalista/UserFiles/u_homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class U_navbar extends StatefulWidget {
   const U_navbar({super.key});
@@ -14,7 +13,8 @@ class U_navbar extends StatefulWidget {
 class _U_navbarState extends State<U_navbar> {
   List pages = [
     const U_homepage(),
-    U_chatgpt(),
+    const U_chat(),
+    const U_chatgpt(),
   ];
   int currindex = 0;
   void ontap(int index) {
@@ -29,7 +29,7 @@ class _U_navbarState extends State<U_navbar> {
       body: pages[currindex],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.teal,
+          selectedItemColor: const Color(0xff40916c),
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: true,
           showSelectedLabels: true,
@@ -37,7 +37,10 @@ class _U_navbarState extends State<U_navbar> {
           currentIndex: currindex,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.bolt_outlined), label: "Boat"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.help_center), label: "Ask help"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.bolt_outlined), label: "Boat"),
           ]),
     );
   }

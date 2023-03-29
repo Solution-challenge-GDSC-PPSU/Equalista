@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 
-const backgroundColor = Colors.white;
-const botBackgroundColor = Colors.white;
+const backgroundColor = Color(0xffcaf0f8);
+const botBackgroundColor = Color(0xff00b4d8);
 
 class U_chatgpt extends StatefulWidget {
   const U_chatgpt({super.key});
@@ -66,8 +66,8 @@ class ChatMessageWidget extends StatelessWidget {
           chatMessageType == ChatMessageType.bot
               ? Container(
                   margin: const EdgeInsets.only(right: 10.0, top: 10),
-                  child: CircleAvatar(
-                    backgroundColor: const Color.fromRGBO(16, 163, 127, 1),
+                  child: const CircleAvatar(
+                    backgroundColor: Color.fromRGBO(16, 163, 127, 1),
                     child: Text(
                       'Bot',
                     ),
@@ -119,7 +119,7 @@ class _U_chatgptState extends State<U_chatgpt> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "ChatGPT",
         ),
         backgroundColor: botBackgroundColor,
@@ -133,7 +133,7 @@ class _U_chatgptState extends State<U_chatgpt> {
             ),
             Visibility(
               visible: isLoading,
-              child: Padding(
+              child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SpinKitThreeBounce(
                     color: Colors.black,

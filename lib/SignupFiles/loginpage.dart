@@ -2,6 +2,7 @@ import 'package:action_slider/action_slider.dart';
 import 'package:equalista/SignupFiles/role_selectpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../Model_service/Globalservices/firebase_helper.dart';
 
 class Loginpage extends StatefulWidget {
@@ -22,7 +23,11 @@ class _LoginpageState extends State<Loginpage> {
         child: Stack(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/homepage.png", fit: BoxFit.cover, height: height,),
+            Image.asset(
+              "assets/homepage.png",
+              fit: BoxFit.cover,
+              height: height,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -31,19 +36,29 @@ class _LoginpageState extends State<Loginpage> {
               child: Center(
                 child: ActionSlider.standard(
                   width: 300.0,
-                  icon: const Icon(
-                    Icons.done,
+                  icon: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white, // set the background color here
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.asset('assets/google.png'),
                   ),
-                  child: const Text('Slide To Confirm'),
+                  child: const Text(
+                    'Slide To Login',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        color: Color(0xff6c757d)),
+                  ),
                   action: (controller) async {
                     controller.loading();
                     // await Future.delayed(const Duration(seconds: 3));
-                    // FirebaseHelper.signInWithGoogle().then((value) async {
-                    //   controller.success();
-                    //   await Future.delayed(const Duration(seconds: 1));
-                    //
+                    FirebaseHelper.signInWithGoogle().then((value) async {
+                      controller.success();
+                      // await Future.delayed(const Duration(seconds: 1));
+
                       Get.to(() => const Role_Selectpage());
-                    // });
+                    });
                   },
                 ),
               ),

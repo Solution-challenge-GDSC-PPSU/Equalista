@@ -22,13 +22,13 @@ class _OnboardpageState extends State<Onboardpage> {
       description: "The place where you find justice and Solution".tr,
     ),
     Onboard(
-      image: "assets/enq2.png",
+      image: "assets/community2.png",
       title: "One stop Community",
       description:
           "Interact with our active community anonymously which is always there to help",
     ),
     Onboard(
-      image: "assets/enq3.png",
+      image: "assets/consult2.png",
       title: "Expert Consulatant",
       description: "Still didn't got solution? Take help from our consultants.",
     ),
@@ -85,9 +85,10 @@ class _OnboardpageState extends State<Onboardpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(233, 239, 253, 1),
+      // backgroundColor: const Color.fromRGBO(233, 239, 253, 1),
+      backgroundColor: const Color(0xffd8e2dc),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(233, 239, 253, 1),
+        backgroundColor: const Color(0xffd8e2dc),
         elevation: 0,
         actions: [
           Padding(
@@ -130,7 +131,7 @@ class _OnboardpageState extends State<Onboardpage> {
             Row(
               children: [
                 const SizedBox(
-                  width: 19,
+                  width: 18,
                 ),
                 ...List.generate(
                     onboarddata.length,
@@ -153,7 +154,8 @@ class _OnboardpageState extends State<Onboardpage> {
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.ease);
                     },
-                    backgroundColor: Colors.lightBlue,
+                    // backgroundColor: Colors.lightBlue,
+                    backgroundColor: const Color(0xff83c5be),
                     child: const Icon(Icons.arrow_forward_ios),
                   ),
                 ),
@@ -176,10 +178,11 @@ class Dotindication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: isActive ? 22 : 8,
+      height: isActive ? 30 : 15,
       width: 4,
       decoration: const BoxDecoration(
-        color: Colors.blue,
+        // color: Colors.blue,
+        color: Color(0xff457b9d),
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -211,11 +214,11 @@ class Onboardingtile extends StatelessWidget {
         ),
         Image.asset(
           image,
-          height: 300,
+          height: 320,
           width: 350,
         ),
         const SizedBox(
-          height: 55,
+          height: 30,
         ),
         // const Spacer(),
         Text(title,

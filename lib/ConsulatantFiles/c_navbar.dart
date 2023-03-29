@@ -1,3 +1,4 @@
+import 'package:equalista/ConsulatantFiles/c_communitypage.dart';
 import 'package:equalista/ConsulatantFiles/c_homepage.dart';
 import 'package:equalista/ConsulatantFiles/groupmembers.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,14 @@ class C_navbar extends StatefulWidget {
   @override
   State<C_navbar> createState() => _C_navbarState();
 }
+
 const backgroundColor = Colors.black;
 const botBackgroundColor = Colors.black;
 
-
 class _C_navbarState extends State<C_navbar> {
-   List pages = [
-    const C_homepage(),
-    Groupmember(),
+  List pages = [
+    const C_communitypage(),
+    const Groupmember(),
     const C_homepage(),
   ];
   int currindex = 0;
@@ -28,7 +29,7 @@ class _C_navbarState extends State<C_navbar> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       body: pages[currindex],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

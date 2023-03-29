@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equalista/UserFiles/post_form.dart';
-import 'package:equalista/UserFiles/u_drawer.dart';
+import 'package:equalista/ConsulatantFiles/c_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,14 +11,14 @@ Color fromHex(String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-class U_homepage extends StatefulWidget {
-  const U_homepage({super.key});
+class C_communitypage extends StatefulWidget {
+  const C_communitypage({super.key});
 
   @override
-  State<U_homepage> createState() => _U_homepageState();
+  State<C_communitypage> createState() => _C_communitypageState();
 }
 
-class _U_homepageState extends State<U_homepage> {
+class _C_communitypageState extends State<C_communitypage> {
   Future<void> likepost(String postid) async {
     User? user = FirebaseAuth.instance.currentUser;
     await FirebaseFirestore.instance
@@ -116,19 +115,19 @@ class _U_homepageState extends State<U_homepage> {
           foregroundColor: Colors.black,
           backgroundColor: const Color(0xffDAF5FF),
           title: const Text(
-            'User Homepage',
+            'Consultant Homepage',
             style: TextStyle(color: Colors.black),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Get.to(() => const Post_form());
-              },
-              icon: const Icon(Icons.add),
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: () {
+          //       Get.to(() => const Post_form());
+          //     },
+          //     icon: const Icon(Icons.add),
+          //   ),
+          // ],
         ),
-        drawer: const U_drawer(),
+        drawer: const C_drawer(),
         body: Container(
             child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Posthub').snapshots(),

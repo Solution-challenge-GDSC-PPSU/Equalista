@@ -2,7 +2,7 @@
     package="com.example.equalista">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="equalista"
+        android:label="Equalista"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
